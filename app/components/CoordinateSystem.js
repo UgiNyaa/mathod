@@ -127,14 +127,17 @@ export default class CoordinateSystem extends React.Component {
   onMouseMove = (e) => {
     if (this.state.move) {
       var relative = {
-        x: this.state.oldMouse.x - e.pageX,
-        y: this.state.oldMouse.y - e.pageY
+        x: e.pageX - this.state.oldMouse.x,
+        y: e.pageY - this.state.oldMouse.y
       }
+      console.log('oldMouse: ' + this.state.oldMouse.x + ' ' + this.state.oldMouse.y);
+      console.log('mouse: ' + e.pageX + ' ' + e.pageY)
+      console.log('relative: ' + relative.x + ' ' + relative.y)
       var oldOrigin = this.state.origin
       this.setState({
         origin: {
-          x: this.state.origin.x - relative.x,
-          y: this.state.origin.y - relative.y
+          x: this.state.origin.x + relative.x,
+          y: this.state.origin.y + relative.y
         },
         oldMouse: {
           x: e.pageX,
